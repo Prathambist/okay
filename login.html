@@ -1,0 +1,78 @@
+<html>
+    <head>
+        <title>Login</title>
+        <link rel="stylesheet" href="../css/styles.css">
+    </head>
+    <body class="login-page">
+        <h1>Login</h1>
+        <div class="form-container">
+            <form id="loginForm" onsubmit="return handleLogin(event)">
+                <h2>Login</h2>
+                <label for="loginEmail">Email:</label>
+                <input type="email" id="loginEmail" name="email" required>
+                <label for="loginPassword">Password:</label>
+                <input type="password" id="loginPassword" name="password" required>
+                <input type="submit" value="Login">
+            </form>
+            <p>Don't have an account? <a href="signup.html">Sign up</a></p>
+        </div>
+
+        <!-- Modal for login success -->
+        <div id="loginSuccessModal" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeModal('loginSuccessModal')">&times;</span>
+                <p>Login successful!</p>
+            </div>
+        </div>
+
+        <!-- Modal for login error -->
+        <div id="loginErrorModal" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeModal('loginErrorModal')">&times;</span>
+                <p>Invalid email or password.</p>
+            </div>
+        </div>
+
+        <script>
+            function handleLogin(event) {
+            event.preventDefault();
+            const email = document.getElementById('loginEmail').value;
+            const password = document.getElementById('loginPassword').value;
+
+            // Check if the user is already signed up
+            const storedEmail = localStorage.getItem('signupEmail');
+            const storedPassword = localStorage.getItem('signupPassword');
+
+            if (email === storedEmail && password === storedPassword) {
+                showModal('loginSuccessModal');
+                setTimeout(() => {
+                window.location.href = 'form.html';
+                }, 2000);
+            } else {
+                showModal('loginErrorModal');
+            }
+            }
+
+            function showModal(modalId) {
+            const modal = document.getElementById(modalId);
+            modal.style.display = 'block';
+            }
+
+            function closeModal(modalId) {
+            const modal = document.getElementById(modalId);
+            modal.style.display = 'none';
+            }
+
+            window.onclick = function(event) {
+            const loginSuccessModal = document.getElementById('loginSuccessModal');
+            const loginErrorModal = document.getElementById('loginErrorModal');
+            if (event.target === loginSuccessModal) {
+                loginSuccessModal.style.display = 'none';
+            }
+            if (event.target === loginErrorModal) {
+                loginErrorModal.style.display = 'none';
+            }
+            }
+        </script>
+    </body>
+</html>

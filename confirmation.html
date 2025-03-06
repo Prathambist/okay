@@ -1,0 +1,24 @@
+<html>
+    <head>
+        <title>Confirmation Page</title>
+        <link rel="stylesheet" href="../css/styles.css">
+    </head>
+    <body class="confirmation-page">
+        <h1>Confirmation Page</h1>
+        <p>Name: <span id="name"></span></p>
+        <p>Age: <span id="age"></span></p>
+        <p>Gender: <span id="gender"></span></p>
+        <p>Major: <span id="major"></span></p>
+
+        <script>
+            // Get URL parameters
+            const urlParams = new URLSearchParams(window.location.search);
+            document.getElementById('name').textContent = urlParams.get('name');
+            document.getElementById('age').textContent = urlParams.get('age');
+            document.getElementById('gender').textContent = urlParams.get('gender');
+            document.getElementById('major').textContent = urlParams.get('major');
+
+        </script>
+        <button onclick="window.location.href ='form.html'">Previous</button>
+    </body>
+</html>

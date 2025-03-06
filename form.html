@@ -1,0 +1,72 @@
+<html>
+    <head>
+        <marquee>HELLO</marquee>
+        <title>Form</title>
+        <link rel="stylesheet" href="../css/styles.css">
+    </head>
+    <body class="form-page">
+        <h1>Form</h1>
+        <form id="userForm" action="confirmation.html" method="get" onsubmit="return validateForm()">
+            <table>
+                <tr>
+                    <td>
+                        Name:
+                    </td>
+                    <td>
+                        <input type="text" name="name" id="name" required>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Age:
+                    </td>
+                    <td>
+                        <input type="number" name="age" id="age" required>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Gender:
+                    </td>
+                    <td>
+                        <input type="radio" name="gender" value="male" id="male" required>Male
+                        <input type="radio" name="gender" value="female" id="female" required>Female
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Major:
+                    </td>
+                    <td>
+                        <select name="major" id="major" required>
+                            <option value="" disabled selected>Select your Major</option>
+                            <option value="law">Law</option>
+                            <option value="arts">Arts</option>
+                            <option value="biology">Biology</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <input type="submit" value="Submit">
+                    </td>
+                </tr>
+            </table>
+        </form>
+        <script>
+            function validateForm() {
+                const name = document.getElementById('name').value;
+                const age = document.getElementById('age').value;
+                const gender = document.querySelector('input[name="gender"]:checked');
+                const major = document.getElementById('major').value;
+
+                if (!name || !age || !gender || !major) {
+                    alert('Please fill out all fields.');
+                    return false;
+                }
+
+                return true;
+            }
+        </script>
+    </body>
+</html>
